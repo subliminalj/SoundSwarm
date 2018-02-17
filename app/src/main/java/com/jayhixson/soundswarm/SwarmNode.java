@@ -4,7 +4,7 @@ import java.util.UUID;
 
 /**
  * Created by jayhixson on 2/14/18.
- * A SwarmNode is a an audiofile unit with properties to identify it and for playback.
+ * Each node holds one file and it's associated properties for playback.
  */
 
 public class SwarmNode {
@@ -15,6 +15,8 @@ public class SwarmNode {
     private boolean mLoop;
     private Float mBegin;
     private Float mEnd;
+    private Float mSpeed;
+
 
     public SwarmNode() {
         mId = UUID.randomUUID();
@@ -80,4 +82,10 @@ public class SwarmNode {
     public void setEnd(Float end) {
         mEnd = end;
     }
+
+    public Float getSpeed() { return mSpeed; }
+
+    public void setSpeed(Float speed) { mSpeed = speed; }
+
 }
+
