@@ -16,6 +16,7 @@ import com.jayhixson.soundswarm.SwarmNode;
 
 /**
  * Created by jayhixson on 2/26/18.
+ * Inflating and setting listeners for a fragment that displays SwarmNode buttons and EditText fields.
  */
 
 public class SwarmFragment extends Fragment {
