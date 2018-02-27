@@ -25,6 +25,7 @@ public class SwarmFragment extends Fragment {
     private EditText mTitletxt;
     private EditText mDescriptiontxt;
     private CheckBox mLoopbox;
+  //  private EditText mBegintxt; not implemented - needs error handling
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,7 +103,33 @@ public class SwarmFragment extends Fragment {
                 mSwarmNode.setLoop(isChecked);
             }
         });
+/*
+        mBegintxt = (EditText) v.findViewById(R.id.begin_text);
+        mBegintxt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(
+                    CharSequence s, int start, int count, int after) {
+                //blank intentionally
+            }
 
+            @Override
+            public void onTextChanged(
+                    CharSequence s, int start, int before, int count) {
+                try {
+                    Float sfloat = Float.parseFloat(s.toString());
+                    mSwarmNode.setBegin(sfloat);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //blank intentionally
+            }
+        });
+*/
         return v;
 
 
