@@ -20,7 +20,7 @@ public class SwarmNode {
 
     public SwarmNode() {
         mId = UUID.randomUUID();
-        mFileName = null;
+        mFileName = "filename.wav";
         mTitle = "Title";
         mDesc = "Description";
         mLoop = false;

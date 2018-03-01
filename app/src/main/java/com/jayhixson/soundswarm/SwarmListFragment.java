@@ -7,6 +7,8 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -38,9 +40,30 @@ public class SwarmListFragment extends android.support.v4.app.Fragment {
         mSwarmRecyclerView.setAdapter(mAdapter);
     }
 
-    private class SwarmHolder extends RecyclerView.ViewHolder {
+    private class SwarmHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private TextView mTitleTextView;
+        private TextView mDescriptionTextView;
+        private TextView mFileTextView;
+        private SwarmNode mSwarmNode;
+
+        public void bind(SwarmNode swarmNode){
+            mSwarmNode = swarmNode;
+            mTitleTextView.setText(mSwarmNode.getTitle());
+            mDescriptionTextView.setText(mSwarmNode.getDesc());
+            mFileTextView.setText(mSwarmNode.getFileName());
+        }
+
         public SwarmHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_swarm, parent, false));
+            itemView.setOnClickListener(this);
+        mTitleTextView = (TextView) itemView.findViewById(R.id.title_text);
+        mDescriptionTextView = (TextView) itemView.findViewById(R.id.description_text);
+        mFileTextView = (TextView) itemView.findViewById(R.id.file_name_text);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(getActivity(), mSwarmNode.getTitle() + " clicked!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -59,7 +82,8 @@ public class SwarmListFragment extends android.support.v4.app.Fragment {
 
         @Override
         public void onBindViewHolder(SwarmHolder holder, int position) {
-
+        SwarmNode swarmNode = mSwarmNode.get(position);
+        holder.bind(swarmNode);
         }
 
         @Override
