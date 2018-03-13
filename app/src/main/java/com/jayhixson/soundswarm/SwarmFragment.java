@@ -14,6 +14,8 @@ import android.widget.EditText;
 import com.jayhixson.soundswarm.R;
 import com.jayhixson.soundswarm.SwarmNode;
 
+import java.util.UUID;
+
 /**
  * Created by jayhixson on 2/26/18.
  * Inflating and setting listeners for a fragment that displays SwarmNode buttons and EditText fields.
@@ -29,13 +31,16 @@ public class SwarmFragment extends Fragment {
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mSwarmNode = new SwarmNode();
+       // mSwarmNode = new SwarmNode();
+        UUID swarmId = (UUID) getActivity().getIntent().getSerializableExtra(SwarmActivity.EXTRA_SWARM_ID);
+        mSwarmNode = Swarm.get(getActivity()).getSwarm(swarmId);
     }
 
     @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.swarm_node_fragment, container, false);
 
         mFileNametxt = (EditText) v.findViewById(R.id.file_name_text);
+        mFileNametxt.setText(mSwarmNode.getFileName());
         mFileNametxt.addTextChangedListener(new TextWatcher(){
             @Override
             public void beforeTextChanged(
@@ -57,6 +62,7 @@ public class SwarmFragment extends Fragment {
 
 
         mTitletxt = (EditText) v.findViewById(R.id.title_text);
+        mTitletxt.setText(mSwarmNode.getTitle());
         mTitletxt.addTextChangedListener(new TextWatcher(){
             @Override
             public void beforeTextChanged(
@@ -77,6 +83,7 @@ public class SwarmFragment extends Fragment {
     });
 
         mDescriptiontxt = (EditText) v.findViewById(R.id.description_text);
+        mDescriptiontxt.setText(mSwarmNode.getDesc());
         mDescriptiontxt.addTextChangedListener(new TextWatcher() {
              @Override
              public void beforeTextChanged(
@@ -97,6 +104,7 @@ public class SwarmFragment extends Fragment {
         });
 
         mLoopbox = (CheckBox)v.findViewById(R.id.loopbox);
+        mLoopbox.setChecked(mSwarmNode.isLoop());
         mLoopbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
