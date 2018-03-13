@@ -27,6 +27,7 @@
 
             <EditText
                 android:id="@+id/file_name_text"
+                style="@style/Widget.AppCompat.AutoCompleteTextView"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:inputType="text"

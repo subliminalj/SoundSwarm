@@ -1,5 +1,6 @@
 package com.jayhixson.soundswarm;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -63,7 +64,10 @@ public class SwarmListFragment extends android.support.v4.app.Fragment {
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(getActivity(), mSwarmNode.getTitle() + " clicked!", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getActivity(), mSwarmNode.getTitle() + " clicked!", Toast.LENGTH_SHORT).show();
+           // Intent intent = new Intent(getActivity(),SwarmActivity.class);
+            Intent intent = SwarmActivity.newIntent(getActivity(), mSwarmNode.getId());
+            startActivity(intent);
         }
     }
 
