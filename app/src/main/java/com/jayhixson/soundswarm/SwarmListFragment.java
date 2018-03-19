@@ -47,7 +47,7 @@ public class SwarmListFragment extends android.support.v4.app.Fragment {
     }
 
     private class SwarmHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private Button mLoadfile;
+        //private Button mLoadfile;
         private Button mPlay;
         private TextView mFileTextView;
         private TextView mTitleTextView;
@@ -74,7 +74,7 @@ public class SwarmListFragment extends android.support.v4.app.Fragment {
         public SwarmHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_swarm, parent, false));
             itemView.setOnClickListener(this);
-        mLoadfile = (Button) itemView.findViewById(R.id.LoadButton);
+        //mLoadfile = (Button) itemView.findViewById(R.id.LoadButton);
         mPlay = (Button) itemView.findViewById(R.id.playbutton);
         mFileTextView = (TextView) itemView.findViewById(R.id.file_name_text);
         mTitleTextView = (TextView) itemView.findViewById(R.id.title_text);

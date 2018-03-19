@@ -7,12 +7,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:layout_width="175dp"
-            android:layout_height="wrap_content"
-            android:text="LOAD"
-            android:id="@+id/LoadButton"/>
-
         <ToggleButton
             android:id="@+id/playbutton"
             android:layout_width="175dp"
