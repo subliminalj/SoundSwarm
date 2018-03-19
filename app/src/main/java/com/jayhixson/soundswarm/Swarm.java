@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-/**
+/**A SWARM is a list of SwarmNodes. Herein lies logic for the recycler to use List<SwarmNode>
  * Created by jayhixson on 2/26/18.
  */
 

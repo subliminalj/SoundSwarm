@@ -1,5 +1,7 @@
 package com.jayhixson.soundswarm;
 
+import android.net.Uri;
+
 import java.util.UUID;
 
 /**
@@ -17,10 +19,19 @@ public class SwarmNode {
     private Float mEnd;
     private Float mSpeed;
 
+    public Uri getFile() {
+        return mFile;
+    }
+
+    public void setFile(Uri file) {
+        mFile = file;
+    }
+
+    private Uri mFile;
 
     public SwarmNode() {
         mId = UUID.randomUUID();
-        mFileName = "filename.wav";
+        mFileName = "file.wav";
         mTitle = "Title";
         mDesc = "Description";
         mLoop = false;

@@ -8,8 +8,13 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -42,24 +47,44 @@ public class SwarmListFragment extends android.support.v4.app.Fragment {
     }
 
     private class SwarmHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private Button mLoadfile;
+        private Button mPlay;
+        private TextView mFileTextView;
         private TextView mTitleTextView;
         private TextView mDescriptionTextView;
-        private TextView mFileTextView;
+        private TextView mBeginTextView;
+        private TextView mEndTextView;
+        private CheckBox mLoopbox;
+        private TextView mSpeedTextView;
+        private ProgressBar mProgressBar;
         private SwarmNode mSwarmNode;
+
 
         public void bind(SwarmNode swarmNode){
             mSwarmNode = swarmNode;
+            mFileTextView.setText(mSwarmNode.getFileName());
             mTitleTextView.setText(mSwarmNode.getTitle());
             mDescriptionTextView.setText(mSwarmNode.getDesc());
-            mFileTextView.setText(mSwarmNode.getFileName());
+            //mBeginTextView.setText(mSwarmNode.getBegin().toString());
+            //mEndTextView.setText(mSwarmNode.getEnd().toString());
+            mLoopbox.setChecked(mSwarmNode.isLoop());
+            //mSpeedTextView.setText(mSwarmNode.getSpeed().toString());
         }
 
         public SwarmHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_swarm, parent, false));
             itemView.setOnClickListener(this);
+        mLoadfile = (Button) itemView.findViewById(R.id.LoadButton);
+        mPlay = (Button) itemView.findViewById(R.id.playbutton);
+        mFileTextView = (TextView) itemView.findViewById(R.id.file_name_text);
         mTitleTextView = (TextView) itemView.findViewById(R.id.title_text);
         mDescriptionTextView = (TextView) itemView.findViewById(R.id.description_text);
-        mFileTextView = (TextView) itemView.findViewById(R.id.file_name_text);
+        mBeginTextView = (TextView) itemView.findViewById(R.id.begin_text);
+        mEndTextView = (TextView) itemView.findViewById(R.id.end_text);
+        mLoopbox = (CheckBox) itemView.findViewById(R.id.loopbox);
+        mSpeedTextView = (TextView) itemView.findViewById(R.id.speed_text);
+        mProgressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);
+
         }
 
         @Override

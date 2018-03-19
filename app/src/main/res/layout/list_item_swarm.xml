@@ -2,13 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
-    <ToggleButton
-        android:id="@+id/playbutton"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ToggleButton" />
+        android:orientation="horizontal">
 
+        <Button
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:text="LOAD"
+            android:id="@+id/LoadButton"/>
+
+        <ToggleButton
+            android:id="@+id/playbutton"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:text="ToggleButton" />
+    </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +37,6 @@
 
             <EditText
                 android:id="@+id/file_name_text"
-                style="@style/Widget.AppCompat.AutoCompleteTextView"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:inputType="text"
@@ -73,4 +82,98 @@
                 android:singleLine="false" />
         </LinearLayout>
     </LinearLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:text="@string/loop" />
+
+            <CheckBox
+                android:id="@+id/loopbox"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:layout_marginLeft="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:text="@string/begin" />
+
+            <EditText
+                android:id="@+id/begin_text"
+                android:layout_width="63dp"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:text="@string/end" />
+
+            <EditText
+                android:id="@+id/end_text"
+                android:layout_width="63dp"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:text="@string/speed" />
+
+            <EditText
+                android:id="@+id/speed_text"
+                android:layout_width="63dp"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:singleLine="true" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

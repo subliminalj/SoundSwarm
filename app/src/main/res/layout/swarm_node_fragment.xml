@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
+            <Button
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:text="LOAD"
+                android:id="@+id/LoadButton_solo"/>
+
+            <ToggleButton
+                android:id="@+id/playbutton_solo"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:text="ToggleButton" />
+        </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,7 +42,7 @@
                     android:text="@string/file_name" />
 
                 <EditText
-                    android:id="@+id/file_name_text"
+                    android:id="@+id/file_name_text_solo"
                     android:layout_width="80dp"
                     android:layout_height="match_parent"
                     android:inputType="text"
@@ -45,7 +61,7 @@
                     android:text="@string/title" />
 
                 <EditText
-                    android:id="@+id/title_text"
+                    android:id="@+id/title_text_solo"
                     android:layout_width="80dp"
                     android:layout_height="match_parent"
                     android:inputType="text"
@@ -65,7 +81,7 @@
                     android:text="@string/description" />
 
                 <EditText
-                    android:id="@+id/description_text"
+                    android:id="@+id/description_text_solo"
                     android:layout_width="125dp"
                     android:layout_height="match_parent"
                     android:inputType="text"
@@ -94,7 +110,7 @@
                     android:text="@string/loop" />
 
                 <CheckBox
-                    android:id="@+id/loopbox"
+                    android:id="@+id/loopbox_solo"
                     android:layout_width="match_parent"
                     android:layout_height="49dp"
                     android:layout_marginLeft="20dp" />
@@ -112,7 +128,7 @@
                     android:text="@string/begin" />
 
                 <EditText
-                    android:id="@+id/begin_text"
+                    android:id="@+id/begin_text_solo"
                     android:layout_width="63dp"
                     android:layout_height="match_parent"
                     android:inputType="text"
@@ -131,7 +147,7 @@
                     android:text="@string/end" />
 
                 <EditText
-                    android:id="@+id/end_text"
+                    android:id="@+id/end_text_solo"
                     android:layout_width="63dp"
                     android:layout_height="match_parent"
                     android:inputType="text"
@@ -150,7 +166,7 @@
                     android:text="@string/speed" />
 
                 <EditText
-                    android:id="@+id/speed_text"
+                    android:id="@+id/speed_text_solo"
                     android:layout_width="63dp"
                     android:layout_height="match_parent"
                     android:inputType="text"
@@ -163,7 +179,7 @@
             android:layout_height="30dp" />
 
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/progressBar_solo"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
