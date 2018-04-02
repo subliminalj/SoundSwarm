@@ -137,6 +137,7 @@ public class SwarmFragment extends Fragment {
         });
 
         mBegintxt = (EditText) v.findViewById(R.id.begin_text_solo);
+        mBegintxt.setText(mSwarmNode.getBegin().toString());
         mBegintxt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(
@@ -164,6 +165,7 @@ public class SwarmFragment extends Fragment {
         });
 
         mEndtxt = (EditText) v.findViewById(R.id.end_text_solo);
+        mEndtxt.setText(mSwarmNode.getEnd().toString());
         mEndtxt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(
@@ -191,6 +193,7 @@ public class SwarmFragment extends Fragment {
         });
 
         mSpeedtxt = (EditText) v.findViewById(R.id.speed_text_solo);
+        mSpeedtxt.setText(mSwarmNode.getSpeed().toString());
         mSpeedtxt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(
