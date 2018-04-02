@@ -36,8 +36,8 @@ public class SwarmFragment extends Fragment {
     private EditText mTitletxt;
     private EditText mDescriptiontxt;
     private CheckBox mLoopbox;
-    private EditText mBegintxt; // needs error handling
-    private EditText mEndtxt; // needs error handling
+    private EditText mBegintxt;
+    private EditText mEndtxt;
     private EditText mSpeedtxt; // needs error handling
 
     @Override public void onCreate(Bundle savedInstanceState) {
@@ -147,18 +147,19 @@ public class SwarmFragment extends Fragment {
             @Override
             public void onTextChanged(
                     CharSequence s, int start, int before, int count) {
+               // blank intentionally
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
                 try {
                     Float sfloat = Float.parseFloat(s.toString());
                     mSwarmNode.setBegin(sfloat);
                 } catch (Exception e){
                     e.printStackTrace();
+                    Toast.makeText(getActivity(), "Invalid number!", Toast.LENGTH_SHORT).show();
                 }
 
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                //blank intentionally
             }
         });
 
@@ -173,19 +174,20 @@ public class SwarmFragment extends Fragment {
             @Override
             public void onTextChanged(
                     CharSequence s, int start, int before, int count) {
+                // blank intentionally
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
                 try {
                     Float sfloat = Float.parseFloat(s.toString());
                     mSwarmNode.setEnd(sfloat);
                 } catch (Exception e){
                     e.printStackTrace();
+                    Toast.makeText(getActivity(), "Invalid number!", Toast.LENGTH_SHORT).show();
                 }
 
             }
 
-            @Override
-            public void afterTextChanged(Editable s) {
-                //blank intentionally
-            }
         });
 
         mSpeedtxt = (EditText) v.findViewById(R.id.speed_text_solo);
@@ -199,18 +201,20 @@ public class SwarmFragment extends Fragment {
             @Override
             public void onTextChanged(
                     CharSequence s, int start, int before, int count) {
-                try {
-                    Float sfloat = Float.parseFloat(s.toString());
-                    mSwarmNode.setSpeed(sfloat);
-                } catch (Exception e){
-                    e.printStackTrace();
-                }
+                //blank intentionally
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                //blank intentionally
+                try {
+                    Float sfloat = Float.parseFloat(s.toString());
+                    mSwarmNode.setSpeed(sfloat);
+                } catch (Exception e){
+                    e.printStackTrace();
+                    Toast.makeText(getActivity(), "Invalid number!", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
