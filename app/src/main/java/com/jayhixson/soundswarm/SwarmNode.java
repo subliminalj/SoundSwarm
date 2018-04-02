@@ -15,9 +15,9 @@ public class SwarmNode {
     private String mTitle;
     private String mDesc;
     private boolean mLoop;
-    private Float mBegin;
-    private Float mEnd;
-    private Float mSpeed;
+    private Double mBegin;
+    private Double mEnd;
+    private Double mSpeed;
 
     public Uri getFile() {
         return mFile;
@@ -35,10 +35,9 @@ public class SwarmNode {
         mTitle = "Title";
         mDesc = "Description";
         mLoop = false;
-        /*
         mBegin = 0.0;
-        mEnd = file.getLength();
-         */
+        mEnd = 1.0;
+        mSpeed = 1.0;
     }
 
     public UUID getId() {
@@ -78,25 +77,25 @@ public class SwarmNode {
         mLoop = loop;
     }
 
-    public Float getBegin() {
+    public Double getBegin() {
         return mBegin;
     }
 
-    public void setBegin(Float begin) {
+    public void setBegin(Double begin) {
         mBegin = begin;
     }
 
-    public Float getEnd() {
+    public Double getEnd() {
         return mEnd;
     }
 
-    public void setEnd(Float end) {
+    public void setEnd(Double end) {
         mEnd = end;
     }
 
-    public Float getSpeed() { return mSpeed; }
+    public Double getSpeed() { return mSpeed; }
 
-    public void setSpeed(Float speed) { mSpeed = speed; }
+    public void setSpeed(Double speed) { mSpeed = speed; }
 
 }
 

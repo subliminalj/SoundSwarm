@@ -38,7 +38,7 @@ public class SwarmFragment extends Fragment {
     private CheckBox mLoopbox;
     private EditText mBegintxt;
     private EditText mEndtxt;
-    private EditText mSpeedtxt; // needs error handling
+    private EditText mSpeedtxt; // needs error handling for number range
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -153,8 +153,8 @@ public class SwarmFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 try {
-                    Float sfloat = Float.parseFloat(s.toString());
-                    mSwarmNode.setBegin(sfloat);
+                    Double sdouble = Double.parseDouble(s.toString());
+                    mSwarmNode.setSpeed(sdouble);
                 } catch (Exception e){
                     e.printStackTrace();
                     Toast.makeText(getActivity(), "Invalid number!", Toast.LENGTH_SHORT).show();
@@ -179,8 +179,8 @@ public class SwarmFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 try {
-                    Float sfloat = Float.parseFloat(s.toString());
-                    mSwarmNode.setEnd(sfloat);
+                    Double sdouble = Double.parseDouble(s.toString());
+                    mSwarmNode.setSpeed(sdouble);
                 } catch (Exception e){
                     e.printStackTrace();
                     Toast.makeText(getActivity(), "Invalid number!", Toast.LENGTH_SHORT).show();
@@ -208,8 +208,8 @@ public class SwarmFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 try {
-                    Float sfloat = Float.parseFloat(s.toString());
-                    mSwarmNode.setSpeed(sfloat);
+                    Double sdouble = Double.parseDouble(s.toString());
+                    mSwarmNode.setSpeed(sdouble);
                 } catch (Exception e){
                     e.printStackTrace();
                     Toast.makeText(getActivity(), "Invalid number!", Toast.LENGTH_SHORT).show();
