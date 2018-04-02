@@ -65,10 +65,10 @@ public class SwarmListFragment extends android.support.v4.app.Fragment {
             mFileTextView.setText(mSwarmNode.getFileName());
             mTitleTextView.setText(mSwarmNode.getTitle());
             mDescriptionTextView.setText(mSwarmNode.getDesc());
-            //mBeginTextView.setText(mSwarmNode.getBegin().toString());
-            //mEndTextView.setText(mSwarmNode.getEnd().toString());
+            mBeginTextView.setText(mSwarmNode.getBegin().toString());
+            mEndTextView.setText(mSwarmNode.getEnd().toString());
             mLoopbox.setChecked(mSwarmNode.isLoop());
-            //mSpeedTextView.setText(mSwarmNode.getSpeed().toString());
+            mSpeedTextView.setText(mSwarmNode.getSpeed().toString());
         }
 
         public SwarmHolder(LayoutInflater inflater, ViewGroup parent) {
