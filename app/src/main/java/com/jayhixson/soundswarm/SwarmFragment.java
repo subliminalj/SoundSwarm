@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.jayhixson.soundswarm.R;
 import com.jayhixson.soundswarm.SwarmNode;
 
+import java.util.List;
 import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
@@ -227,6 +228,17 @@ public class SwarmFragment extends Fragment {
 
     }
 
+    private void updateUI() {
+
+        mFileNametxt.setText(mSwarmNode.getFileName());
+        mTitletxt.setText(mSwarmNode.getTitle());
+        mDescriptiontxt.setText(mSwarmNode.getDesc());
+        mLoopbox.setChecked(mSwarmNode.isLoop());
+        mBegintxt.setText(mSwarmNode.getBegin().toString());
+        mEndtxt.setText(mSwarmNode.getEnd().toString());
+        mSpeedtxt.setText(mSwarmNode.getSpeed().toString());
+
+    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == SELECT_FILE_CODE && resultCode == RESULT_OK) {
@@ -235,6 +247,8 @@ public class SwarmFragment extends Fragment {
                // Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
                 mSwarmNode.setFile(uri);
+                mSwarmNode.setFileNameFromUri(uri);
+                updateUI();
             }
 
         }

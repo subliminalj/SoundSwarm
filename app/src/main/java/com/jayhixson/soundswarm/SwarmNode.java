@@ -1,6 +1,7 @@
 package com.jayhixson.soundswarm;
 
 import android.net.Uri;
+import android.os.Environment;
 
 import java.util.UUID;
 
@@ -45,12 +46,17 @@ public class SwarmNode {
     }
 
     public String getFileName() {
-
         return mFileName;
     }
 
     public void setFileName(String fileName) {
         mFileName = fileName;
+    }
+
+    public void setFileNameFromUri(Uri fileUri) throws IllegalAccessError {
+        String path = Environment.getRootDirectory().getAbsolutePath(); //Will return "/system"
+        path = path + fileUri.getPath().substring(9); //To cut "content:/" from the Uri path.
+        mFileName = path;
     }
 
     public String getTitle() {
@@ -81,7 +87,8 @@ public class SwarmNode {
         return mBegin;
     }
 
-    public void setBegin(Double begin) {
+    public void setBegin(Double begin) throws IllegalArgumentException {
+        if (begin > 1.0 || begin < 0.0){ throw new IllegalArgumentException(); }
         mBegin = begin;
     }
 
@@ -89,13 +96,16 @@ public class SwarmNode {
         return mEnd;
     }
 
-    public void setEnd(Double end) {
+    public void setEnd(Double end) throws IllegalArgumentException  {
+        if (end > 1.0 || end < 0.0) { throw new IllegalArgumentException(); }
         mEnd = end;
     }
 
     public Double getSpeed() { return mSpeed; }
 
-    public void setSpeed(Double speed) { mSpeed = speed; }
+    public void setSpeed(Double speed) throws IllegalArgumentException {
+        if (speed > 2.0 || speed < 0.0) { throw new IllegalArgumentException(); }
+        mSpeed = speed; }
 
 }
 
