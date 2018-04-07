@@ -244,7 +244,7 @@ public class SwarmFragment extends Fragment {
         if (requestCode == SELECT_FILE_CODE && resultCode == RESULT_OK) {
             Uri uri = data.getData();
             if (uri == null) {
-               // Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Cancelled", Toast.LENGTH_LONG).show();
             } else {
                 mSwarmNode.setFile(uri);
                 mSwarmNode.setFileNameFromUri(uri);
