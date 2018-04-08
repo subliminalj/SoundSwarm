@@ -12,6 +12,7 @@ import java.util.UUID;
 
 public class SwarmNode {
     private UUID mId;
+    private Uri mFile;
     private String mFileName;
     private String mTitle;
     private String mDesc;
@@ -27,8 +28,6 @@ public class SwarmNode {
     public void setFile(Uri file) {
         mFile = file;
     }
-
-    private Uri mFile;
 
     public SwarmNode() {
         mId = UUID.randomUUID();
@@ -88,6 +87,11 @@ public class SwarmNode {
     }
 
     public void setBegin(Double begin) throws IllegalArgumentException {
+        // Pre-condition: begin >= 0.0 && begin <= 1.0
+        if (Assertion.PRE) {
+            Assertion.isTrue(begin >= 0.0);
+            Assertion.isTrue(begin <= 1.0);
+        }
         if (begin > 1.0 || begin < 0.0){ throw new IllegalArgumentException(); }
         mBegin = begin;
     }
@@ -97,14 +101,25 @@ public class SwarmNode {
     }
 
     public void setEnd(Double end) throws IllegalArgumentException  {
-        if (end > 1.0 || end < 0.0) { throw new IllegalArgumentException(); }
+        // Pre-condition: end >= 0.0 && end <= 1.0
+        if (Assertion.PRE) {
+            Assertion.isTrue(end >= 0.0);
+            Assertion.isTrue(end <= 1.0);
+        }
+
+        if (end >= 1.0 || end <= 0.0) { throw new IllegalArgumentException(); }
         mEnd = end;
     }
 
     public Double getSpeed() { return mSpeed; }
 
     public void setSpeed(Double speed) throws IllegalArgumentException {
-        if (speed > 2.0 || speed < 0.0) { throw new IllegalArgumentException(); }
+        // Pre-condition: speed >= 0.5 && speed <= 1.0
+        if (Assertion.PRE) {
+            Assertion.isTrue(speed >= 0.5);
+            Assertion.isTrue(speed <= 2.0);
+        }
+        if (speed >= 2.0 || speed <= 0.5) { throw new IllegalArgumentException(); }
         mSpeed = speed; }
 
 }

@@ -65,7 +65,6 @@ public class SwarmFragment extends Fragment {
 
         mPlayButton = (Button) v.findViewById(R.id.playbutton_solo);
         mFileNametxt = (EditText) v.findViewById(R.id.file_name_text_solo);
-        mFileNametxt.setText(mSwarmNode.getFileName());
         mFileNametxt.addTextChangedListener(new TextWatcher(){
             @Override
             public void beforeTextChanged(
@@ -87,7 +86,6 @@ public class SwarmFragment extends Fragment {
 
 
         mTitletxt = (EditText) v.findViewById(R.id.title_text_solo);
-        mTitletxt.setText(mSwarmNode.getTitle());
         mTitletxt.addTextChangedListener(new TextWatcher(){
             @Override
             public void beforeTextChanged(
@@ -108,7 +106,6 @@ public class SwarmFragment extends Fragment {
     });
 
         mDescriptiontxt = (EditText) v.findViewById(R.id.description_text_solo);
-        mDescriptiontxt.setText(mSwarmNode.getDesc());
         mDescriptiontxt.addTextChangedListener(new TextWatcher() {
              @Override
              public void beforeTextChanged(
@@ -129,7 +126,6 @@ public class SwarmFragment extends Fragment {
         });
 
         mLoopbox = (CheckBox)v.findViewById(R.id.loopbox_solo);
-        mLoopbox.setChecked(mSwarmNode.isLoop());
         mLoopbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -138,7 +134,6 @@ public class SwarmFragment extends Fragment {
         });
 
         mBegintxt = (EditText) v.findViewById(R.id.begin_text_solo);
-        mBegintxt.setText(mSwarmNode.getBegin().toString());
         mBegintxt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(
@@ -166,7 +161,6 @@ public class SwarmFragment extends Fragment {
         });
 
         mEndtxt = (EditText) v.findViewById(R.id.end_text_solo);
-        mEndtxt.setText(mSwarmNode.getEnd().toString());
         mEndtxt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(
@@ -194,7 +188,6 @@ public class SwarmFragment extends Fragment {
         });
 
         mSpeedtxt = (EditText) v.findViewById(R.id.speed_text_solo);
-        mSpeedtxt.setText(mSwarmNode.getSpeed().toString());
         mSpeedtxt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(
@@ -222,7 +215,7 @@ public class SwarmFragment extends Fragment {
             }
         });
 
-
+        updateUI();
         return v;
 
 

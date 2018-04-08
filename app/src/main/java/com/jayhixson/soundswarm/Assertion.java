@@ -1,7 +1,7 @@
 package com.jayhixson.soundswarm;
 
 public class Assertion {
-    public static final boolean PRE = true;
+    public static final boolean PRE = false;
     public static final boolean POST = true;
     public static final boolean INV = true;
 
