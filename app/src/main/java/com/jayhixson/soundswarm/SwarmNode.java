@@ -29,7 +29,7 @@ public class SwarmNode {
         mLoop = false;
         mBegin = 0.0;
         mEnd = 1.0;
-        mSpeed = 1.0;
+        mSpeed = 0.5;
     }
 
     public UUID getId() {
@@ -50,9 +50,10 @@ public class SwarmNode {
     }
 
     public void setFileNameFromUri(Uri fileUri) throws IllegalAccessError {
-        String path = Environment.getRootDirectory().getAbsolutePath(); //Will return "/system"
-        path = path + fileUri.getPath().substring(9); //To cut "content:/" from the Uri path.
-        mFileName = path;
+    // don't use this code... just an example
+        // String path = Environment.getRootDirectory().getAbsolutePath(); //Will return "/system"
+        // path = path + fileUri.getPath().substring(9); //To cut "content:/" from the Uri path.
+        // mFileName = path;
     }
 
     public String getTitle() {
