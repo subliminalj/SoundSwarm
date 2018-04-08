@@ -21,14 +21,6 @@ public class SwarmNode {
     private Double mEnd;
     private Double mSpeed;
 
-    public Uri getFile() {
-        return mFile;
-    }
-
-    public void setFile(Uri file) {
-        mFile = file;
-    }
-
     public SwarmNode() {
         mId = UUID.randomUUID();
         mFileName = "file.wav";
@@ -43,6 +35,11 @@ public class SwarmNode {
     public UUID getId() {
         return mId;
     }
+
+
+    public Uri getFile() { return mFile; }
+
+    public void setFile(Uri file) { mFile = file; }
 
     public String getFileName() {
         return mFileName;
