@@ -1,5 +1,6 @@
 package com.jayhixson.soundswarm;
 
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Environment;
 
@@ -20,6 +21,16 @@ public class SwarmNode {
     private Double mBegin;
     private Double mEnd;
     private Double mSpeed;
+    private MediaPlayer mMp;
+
+    public MediaPlayer getMp() {
+        return mMp;
+    }
+
+    public void setMp(MediaPlayer mp) {
+        mMp = mp;
+    }
+
 
     public SwarmNode() {
         mId = UUID.randomUUID();

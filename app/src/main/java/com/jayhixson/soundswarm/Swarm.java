@@ -1,6 +1,7 @@
 package com.jayhixson.soundswarm;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,16 @@ public class Swarm {
     private static Swarm sSwarm;
 
     private List<SwarmNode> mSwarms;
+    public List<MediaPlayer> mMediaPlayers;
+
+
+    public List<MediaPlayer> getMediaPlayers() {
+        return mMediaPlayers;
+    }
+
+    public void setMediaPlayers(List<MediaPlayer> mediaPlayers) {
+        mMediaPlayers = mediaPlayers;
+    }
 
     public static Swarm get(Context context) {
         if (sSwarm == null) {
@@ -34,6 +45,7 @@ public class Swarm {
     public List<SwarmNode> getSwarms() {
         return mSwarms;
     }
+
 
     public SwarmNode getSwarm(UUID id) {
         for (SwarmNode swarmNode : mSwarms) {
