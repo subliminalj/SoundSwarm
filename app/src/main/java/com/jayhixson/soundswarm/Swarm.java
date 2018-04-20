@@ -15,7 +15,7 @@ public class Swarm {
     private static Swarm sSwarm;
 
     private List<SwarmNode> mSwarms;
-    public List<MediaPlayer> mMediaPlayers;
+    private List<MediaPlayer> mMediaPlayers;
 
 
     public List<MediaPlayer> getMediaPlayers() {
@@ -38,6 +38,7 @@ public class Swarm {
         for (int i = 0; i < 9; i++){
             SwarmNode swarmNode = new SwarmNode();
             swarmNode.setTitle("Node #"+i);
+            swarmNode.setFile(Integer.valueOf("R.raw.a" +i));
             mSwarms.add(swarmNode);
         }
     }

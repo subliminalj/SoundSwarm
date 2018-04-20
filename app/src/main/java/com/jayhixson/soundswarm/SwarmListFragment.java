@@ -19,13 +19,6 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
-import static com.jayhixson.soundswarm.R.raw.a1;
-import static com.jayhixson.soundswarm.R.raw.a2;
-import static com.jayhixson.soundswarm.R.raw.g1;
-import static com.jayhixson.soundswarm.R.raw.g2;
-import static com.jayhixson.soundswarm.R.raw.g3;
-import static com.jayhixson.soundswarm.R.raw.g4;
-import static com.jayhixson.soundswarm.R.raw.g5;
 
 
 /**

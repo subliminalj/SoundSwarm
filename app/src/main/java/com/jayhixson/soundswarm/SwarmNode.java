@@ -13,7 +13,7 @@ import java.util.UUID;
 
 public class SwarmNode {
     private UUID mId;
-    private Uri mFile;
+    private int mFile;
     private String mFileName;
     private String mTitle;
     private String mDesc;
@@ -48,9 +48,9 @@ public class SwarmNode {
     }
 
 
-    public Uri getFile() { return mFile; }
+    public int getFile() { return mFile; }
 
-    public void setFile(Uri file) { mFile = file; }
+    public void setFile(int file) { mFile = file; }
 
     public String getFileName() {
         return mFileName;

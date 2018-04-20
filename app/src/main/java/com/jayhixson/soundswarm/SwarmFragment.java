@@ -1,8 +1,10 @@
 package com.jayhixson.soundswarm;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -31,6 +33,7 @@ import static android.app.Activity.RESULT_OK;
 public class SwarmFragment extends Fragment {
     private static final int SELECT_FILE_CODE = 0;
     private SwarmNode mSwarmNode;
+    private MediaPlayer mMediaPlayerSolo;
     private Button mLoadButton;
     private Button mPlayButton;
     private EditText mFileNametxt;
@@ -62,8 +65,14 @@ public class SwarmFragment extends Fragment {
 
             }
         });
-
+        mMediaPlayerSolo = MediaPlayer.create(getContext(),mSwarmNode.getFile());
         mPlayButton = (Button) v.findViewById(R.id.playbutton_solo);
+        mPlayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+                    public void onClick(View view) { mMediaPlayerSolo.start();
+
+            }
+        });
         mFileNametxt = (EditText) v.findViewById(R.id.file_name_text_solo);
         mFileNametxt.addTextChangedListener(new TextWatcher(){
             @Override
@@ -239,8 +248,8 @@ public class SwarmFragment extends Fragment {
             if (uri == null) {
                 Toast.makeText(getActivity(), "Cancelled", Toast.LENGTH_LONG).show();
             } else {
-                mSwarmNode.setFile(uri);
-                mSwarmNode.setFileNameFromUri(uri);
+                //mSwarmNode.setFile(uri);
+                //mSwarmNode.setFileNameFromUri(uri);
                 updateUI();
             }
 
