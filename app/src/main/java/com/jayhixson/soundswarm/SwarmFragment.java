@@ -15,7 +15,9 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.jayhixson.soundswarm.R;
 import com.jayhixson.soundswarm.SwarmNode;
@@ -35,7 +37,7 @@ public class SwarmFragment extends Fragment {
     private SwarmNode mSwarmNode;
     private MediaPlayer mMediaPlayerSolo;
     private Button mLoadButton;
-    private Button mPlayButton;
+    private ToggleButton mPlayButton;
     private EditText mFileNametxt;
     private EditText mTitletxt;
     private EditText mDescriptiontxt;
@@ -43,6 +45,7 @@ public class SwarmFragment extends Fragment {
     private EditText mBegintxt;
     private EditText mEndtxt;
     private EditText mSpeedtxt; // needs error handling for number range
+    private ProgressBar mProgressBar;
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +57,7 @@ public class SwarmFragment extends Fragment {
     @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.swarm_node_fragment, container, false);
 
-        mLoadButton = (Button) v.findViewById(R.id.LoadButton_solo);
+        mLoadButton = v.findViewById(R.id.LoadButton_solo);
         mLoadButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -66,14 +69,48 @@ public class SwarmFragment extends Fragment {
             }
         });
         mMediaPlayerSolo = MediaPlayer.create(getContext(),mSwarmNode.getFile());
-        mPlayButton = (Button) v.findViewById(R.id.playbutton_solo);
+
+        mMediaPlayerSolo.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.start();
+                while (mp.isPlaying()){
+                    int mPosition = mp.getCurrentPosition();
+                    mProgressBar.setProgress(mPosition);
+                    //update progress bar
+                }
+                mp.reset();
+                mp.release();
+                mp=null;
+
+            }
+        });
+
+        mPlayButton = v.findViewById(R.id.playbutton_solo);
+        mPlayButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    if (!mMediaPlayerSolo.isPlaying()){ mMediaPlayerSolo.start();}
+
+                    mPlayButton.setChecked(false);
+
+                } else {
+                    mMediaPlayerSolo.stop();// The toggle is disabled
+                }
+            }
+        });
+
+
+        /*mPlayButton = v.findViewById(R.id.playbutton_solo);
         mPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
                     public void onClick(View view) { mMediaPlayerSolo.start();
 
             }
         });
-        mFileNametxt = (EditText) v.findViewById(R.id.file_name_text_solo);
+*/
+        mFileNametxt = v.findViewById(R.id.file_name_text_solo);
         mFileNametxt.addTextChangedListener(new TextWatcher(){
             @Override
             public void beforeTextChanged(
@@ -94,7 +131,7 @@ public class SwarmFragment extends Fragment {
         });
 
 
-        mTitletxt = (EditText) v.findViewById(R.id.title_text_solo);
+        mTitletxt = v.findViewById(R.id.title_text_solo);
         mTitletxt.addTextChangedListener(new TextWatcher(){
             @Override
             public void beforeTextChanged(
@@ -114,7 +151,7 @@ public class SwarmFragment extends Fragment {
 
     });
 
-        mDescriptiontxt = (EditText) v.findViewById(R.id.description_text_solo);
+        mDescriptiontxt = v.findViewById(R.id.description_text_solo);
         mDescriptiontxt.addTextChangedListener(new TextWatcher() {
              @Override
              public void beforeTextChanged(
@@ -134,7 +171,7 @@ public class SwarmFragment extends Fragment {
              }
         });
 
-        mLoopbox = (CheckBox)v.findViewById(R.id.loopbox_solo);
+        mLoopbox = v.findViewById(R.id.loopbox_solo);
         mLoopbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -142,7 +179,7 @@ public class SwarmFragment extends Fragment {
                             }
         });
 
-        mBegintxt = (EditText) v.findViewById(R.id.begin_text_solo);
+        mBegintxt = v.findViewById(R.id.begin_text_solo);
         mBegintxt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(
@@ -169,7 +206,7 @@ public class SwarmFragment extends Fragment {
             }
         });
 
-        mEndtxt = (EditText) v.findViewById(R.id.end_text_solo);
+        mEndtxt = v.findViewById(R.id.end_text_solo);
         mEndtxt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(
@@ -196,7 +233,7 @@ public class SwarmFragment extends Fragment {
 
         });
 
-        mSpeedtxt = (EditText) v.findViewById(R.id.speed_text_solo);
+        mSpeedtxt = v.findViewById(R.id.speed_text_solo);
         mSpeedtxt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(
@@ -223,6 +260,8 @@ public class SwarmFragment extends Fragment {
 
             }
         });
+
+        mProgressBar = v.findViewById(R.id.progressBar_solo);
 
         updateUI();
         return v;
