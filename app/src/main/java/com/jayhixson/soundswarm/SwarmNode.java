@@ -128,7 +128,7 @@ public class SwarmNode {
             Assertion.isTrue(speed >= 0.5);
             Assertion.isTrue(speed <= 2.0);
         }
-        if (speed >= 2.0 || speed <= 0.5) { throw new IllegalArgumentException(); }
+        if (speed > 1.0 || speed < 0.5) { throw new IllegalArgumentException(); }
         mSpeed = speed; }
 
 }

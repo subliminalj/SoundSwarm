@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by jayhixson on 2/26/18.
@@ -44,7 +46,7 @@ public class SwarmFragment extends Fragment {
     private CheckBox mLoopbox;
     private EditText mBegintxt;
     private EditText mEndtxt;
-    private EditText mSpeedtxt; // needs error handling for number range
+    private EditText mSpeedtxt;
     private ProgressBar mProgressBar;
 
     @Override public void onCreate(Bundle savedInstanceState) {
@@ -70,46 +72,30 @@ public class SwarmFragment extends Fragment {
         });
         mMediaPlayerSolo = MediaPlayer.create(getContext(),mSwarmNode.getFile());
 
-        mMediaPlayerSolo.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                mp.start();
-                while (mp.isPlaying()){
-                    int mPosition = mp.getCurrentPosition();
-                    mProgressBar.setProgress(mPosition);
-                    //update progress bar
-                }
-                mp.reset();
-                mp.release();
-                mp=null;
-
-            }
-        });
-
         mPlayButton = v.findViewById(R.id.playbutton_solo);
         mPlayButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    if (!mMediaPlayerSolo.isPlaying()){ mMediaPlayerSolo.start();}
-
-                    mPlayButton.setChecked(false);
+                if (!isChecked) {
+                   // Play button says OFF
+                    if (mMediaPlayerSolo.isPlaying()) {
+                        mMediaPlayerSolo.stop();
+                        updatePB(mMediaPlayerSolo);
+                    }
 
                 } else {
-                    mMediaPlayerSolo.stop();// The toggle is disabled
+                    // The toggle is disabled / Play Button ON
+
+                    Runnable r = new MediaPlayerRunnable(mSwarmNode,mMediaPlayerSolo,mPlayButton);
+                    new Thread(r).start();
+                    //mMediaPlayerSolo.start();
+                    updatePB(mMediaPlayerSolo);
                 }
+                // mMediaPlayerSolo.reset();
+                // mMediaPlayerSolo.release();
+                // mMediaPlayerSolo = null;
             }
         });
 
-
-        /*mPlayButton = v.findViewById(R.id.playbutton_solo);
-        mPlayButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-                    public void onClick(View view) { mMediaPlayerSolo.start();
-
-            }
-        });
-*/
         mFileNametxt = v.findViewById(R.id.file_name_text_solo);
         mFileNametxt.addTextChangedListener(new TextWatcher(){
             @Override
@@ -294,6 +280,12 @@ public class SwarmFragment extends Fragment {
 
         }
 
+    }
+
+    private void updatePB(MediaPlayer mp) {
+            int mPosition = mp.getCurrentPosition();
+            mProgressBar.setProgress(mPosition);
+            //update progress bar
     }
 
 }
