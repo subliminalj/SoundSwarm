@@ -1,6 +1,7 @@
 package com.jayhixson.soundswarm;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,8 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.util.List;
+
+
 
 /**
  * Created by jayhixson on 2/27/18. RecyclerView for the SwarmList
@@ -58,10 +61,12 @@ public class SwarmListFragment extends android.support.v4.app.Fragment {
         private TextView mSpeedTextView;
         private ProgressBar mProgressBar;
         private SwarmNode mSwarmNode;
-
+        private MediaPlayer mMediaPlayer;
 
         public void bind(SwarmNode swarmNode){
+
             mSwarmNode = swarmNode;
+            mMediaPlayer = mSwarmNode.getMp();
             mFileTextView.setText(mSwarmNode.getFileName());
             mTitleTextView.setText(mSwarmNode.getTitle());
             mDescriptionTextView.setText(mSwarmNode.getDesc());

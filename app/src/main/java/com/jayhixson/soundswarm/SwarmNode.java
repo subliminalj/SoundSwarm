@@ -1,5 +1,6 @@
 package com.jayhixson.soundswarm;
 
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Environment;
 
@@ -12,7 +13,7 @@ import java.util.UUID;
 
 public class SwarmNode {
     private UUID mId;
-    private Uri mFile;
+    private int mFile;
     private String mFileName;
     private String mTitle;
     private String mDesc;
@@ -20,6 +21,16 @@ public class SwarmNode {
     private Double mBegin;
     private Double mEnd;
     private Double mSpeed;
+    private MediaPlayer mMp;
+
+    public MediaPlayer getMp() {
+        return mMp;
+    }
+
+    public void setMp(MediaPlayer mp) {
+        mMp = mp;
+    }
+
 
     public SwarmNode() {
         mId = UUID.randomUUID();
@@ -37,9 +48,9 @@ public class SwarmNode {
     }
 
 
-    public Uri getFile() { return mFile; }
+    public int getFile() { return mFile; }
 
-    public void setFile(Uri file) { mFile = file; }
+    public void setFile(int file) { mFile = file; }
 
     public String getFileName() {
         return mFileName;
@@ -117,7 +128,7 @@ public class SwarmNode {
             Assertion.isTrue(speed >= 0.5);
             Assertion.isTrue(speed <= 2.0);
         }
-        if (speed >= 2.0 || speed <= 0.5) { throw new IllegalArgumentException(); }
+        if (speed > 1.0 || speed < 0.5) { throw new IllegalArgumentException(); }
         mSpeed = speed; }
 
 }
