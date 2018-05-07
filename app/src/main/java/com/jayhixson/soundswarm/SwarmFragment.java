@@ -23,6 +23,7 @@ import android.widget.ToggleButton;
 import com.jayhixson.soundswarm.R;
 import com.jayhixson.soundswarm.SwarmNode;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -87,12 +88,9 @@ public class SwarmFragment extends Fragment {
 
                     Runnable r = new MediaPlayerRunnable(mSwarmNode,mMediaPlayerSolo,mPlayButton);
                     new Thread(r).start();
-                    //mMediaPlayerSolo.start();
                     updatePB(mMediaPlayerSolo);
                 }
-                // mMediaPlayerSolo.reset();
-                // mMediaPlayerSolo.release();
-                // mMediaPlayerSolo = null;
+
             }
         });
 
@@ -273,8 +271,11 @@ public class SwarmFragment extends Fragment {
             if (uri == null) {
                 Toast.makeText(getActivity(), "Cancelled", Toast.LENGTH_LONG).show();
             } else {
-                //mSwarmNode.setFile(uri);
-                //mSwarmNode.setFileNameFromUri(uri);
+                try {
+                    mSwarmNode.getMp().setDataSource(getContext(), uri);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 updateUI();
             }
 

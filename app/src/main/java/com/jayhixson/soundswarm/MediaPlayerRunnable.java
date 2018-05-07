@@ -35,10 +35,6 @@ public class MediaPlayerRunnable implements Runnable {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 mp.start();
-                //mp.reset();
-                //mp.release();
-                //mp=null;
-
 
             }
         });

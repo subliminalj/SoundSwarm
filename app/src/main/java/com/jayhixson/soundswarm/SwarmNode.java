@@ -3,6 +3,7 @@ package com.jayhixson.soundswarm;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Environment;
+import android.provider.MediaStore;
 
 import java.util.UUID;
 
@@ -41,6 +42,7 @@ public class SwarmNode {
         mBegin = 0.0;
         mEnd = 1.0;
         mSpeed = 0.5;
+        mMp = new MediaPlayer();
     }
 
     public UUID getId() {

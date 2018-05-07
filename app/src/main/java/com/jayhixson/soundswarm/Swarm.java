@@ -45,7 +45,7 @@ public class Swarm {
         mFiles.add(R.raw.a6);
         mFiles.add(R.raw.a7);
         mFiles.add(R.raw.a8);
-        mFiles.add(R.raw.a9);
+        mFiles.add(R.raw.a0);
 
         for (int i = 0; i < 9; i++){
             String filename = "a"+ i;

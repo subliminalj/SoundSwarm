@@ -11,9 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import org.w3c.dom.Text;
 
@@ -50,8 +52,8 @@ public class SwarmListFragment extends android.support.v4.app.Fragment {
     }
 
     private class SwarmHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        //private Button mLoadfile;
-        private Button mPlay;
+        private Button mEditButton;
+        private ToggleButton mPlay;
         private TextView mFileTextView;
         private TextView mTitleTextView;
         private TextView mDescriptionTextView;
@@ -79,8 +81,8 @@ public class SwarmListFragment extends android.support.v4.app.Fragment {
         public SwarmHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_swarm, parent, false));
             itemView.setOnClickListener(this);
-        //mLoadfile = (Button) itemView.findViewById(R.id.LoadButton);
-        mPlay = (Button) itemView.findViewById(R.id.playbutton);
+        mEditButton = (Button) itemView.findViewById(R.id.editbutton);
+        mPlay = (ToggleButton) itemView.findViewById(R.id.playbutton);
         mFileTextView = (TextView) itemView.findViewById(R.id.file_name_text);
         mTitleTextView = (TextView) itemView.findViewById(R.id.title_text);
         mDescriptionTextView = (TextView) itemView.findViewById(R.id.description_text);
@@ -90,12 +92,34 @@ public class SwarmListFragment extends android.support.v4.app.Fragment {
         mSpeedTextView = (TextView) itemView.findViewById(R.id.speed_text);
         mProgressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);
 
+            mPlay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (!isChecked) {
+                        // Play button says OFF
+                        if (mMediaPlayer.isPlaying()) {
+                            mMediaPlayer.stop();
+                        }
+
+                    } else {
+                        // The toggle is disabled / Play Button ON
+                        Runnable r = new MediaPlayerRunnable(mSwarmNode,mSwarmNode.getMp(),mPlay);
+                        new Thread(r).start();
+                    }
+                }
+            });
+
+            mEditButton.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    Intent intent = SwarmActivity.newIntent(getActivity(), mSwarmNode.getId());
+                    startActivity(intent);
+                }
+            });
+
         }
 
         @Override
         public void onClick(View v) {
-           // Toast.makeText(getActivity(), mSwarmNode.getTitle() + " clicked!", Toast.LENGTH_SHORT).show();
-           // Intent intent = new Intent(getActivity(),SwarmActivity.class);
             Intent intent = SwarmActivity.newIntent(getActivity(), mSwarmNode.getId());
             startActivity(intent);
         }
